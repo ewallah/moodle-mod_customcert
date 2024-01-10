@@ -28,10 +28,10 @@ $tid = required_param('tid', PARAM_INT);
 $ltid = required_param('ltid', PARAM_INT); // The template to load.
 $confirm = optional_param('confirm', 0, PARAM_INT);
 
-$template = $DB->get_record('customcert_templates', array('id' => $tid), '*', MUST_EXIST);
+$template = $DB->get_record('customcert_templates', ['id' => $tid], '*', MUST_EXIST);
 $template = new \mod_customcert\template($template);
 
-$loadtemplate = $DB->get_record('customcert_templates', array('id' => $ltid), '*', MUST_EXIST);
+$loadtemplate = $DB->get_record('customcert_templates', ['id' => $ltid], '*', MUST_EXIST);
 $loadtemplate = new \mod_customcert\template($loadtemplate);
 
 if ($cm = $template->get_cm()) {
@@ -56,7 +56,7 @@ if ($confirm && confirm_sesskey()) {
         INNER JOIN {customcert_pages} p
                 ON e.pageid = p.id
              WHERE p.templateid = :templateid";
-    if ($elements = $DB->get_records_sql($sql, array('templateid' => $template->get_id()))) {
+    if ($elements = $DB->get_records_sql($sql, ['templateid' => $template->get_id()])) {
         foreach ($elements as $element) {
             // Get an instance of the element class.
             if ($e = \mod_customcert\element_factory::get_element_instance($element)) {
@@ -66,30 +66,30 @@ if ($confirm && confirm_sesskey()) {
     }
 
     // Delete the pages.
-    $DB->delete_records('customcert_pages', array('templateid' => $template->get_id()));
+    $DB->delete_records('customcert_pages', ['templateid' => $template->get_id()]);
 
     // Copy the items across.
     $loadtemplate->copy_to_template($template);
 
     // Redirect.
-    $url = new moodle_url('/mod/customcert/edit.php', array('tid' => $tid));
+    $url = new moodle_url('/mod/customcert/edit.php', ['tid' => $tid]);
     redirect($url);
 }
 
 // Create the link options.
-$nourl = new moodle_url('/mod/customcert/edit.php', array('tid' => $tid));
-$yesurl = new moodle_url('/mod/customcert/load_template.php', array('tid' => $tid,
+$nourl = new moodle_url('/mod/customcert/edit.php', ['tid' => $tid]);
+$yesurl = new moodle_url('/mod/customcert/load_template.php', ['tid' => $tid,
                                                                     'ltid' => $ltid,
                                                                     'confirm' => 1,
-                                                                    'sesskey' => sesskey()));
+                                                                    'sesskey' => sesskey()]);
 
-$pageurl = new moodle_url('/mod/customcert/load_template.php', array('tid' => $tid, 'ltid' => $ltid));
+$pageurl = new moodle_url('/mod/customcert/load_template.php', ['tid' => $tid, 'ltid' => $ltid]);
 \mod_customcert\page_helper::page_setup($pageurl, $template->get_context(), $title);
 $PAGE->activityheader->set_attrs(['hidecompletion' => true,
             'description' => '']);
 
 $str = get_string('editcustomcert', 'customcert');
-$link = new moodle_url('/mod/customcert/edit.php', array('tid' => $template->get_id()));
+$link = new moodle_url('/mod/customcert/edit.php', ['tid' => $template->get_id()]);
 $PAGE->navbar->add($str, new \action_link($link, $str));
 $PAGE->navbar->add(get_string('loadtemplate', 'customcert'));
 

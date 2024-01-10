@@ -1,5 +1,5 @@
 @mod @mod_customcert
-Feature: Being able to verify that a certificate is valid or not
+Feature: Being able to verify that a custom certificate is valid or not
   In order to ensure that a user can verify a certificate is valid
   As a teacher and non-user
   I need to be able to verify a certificate

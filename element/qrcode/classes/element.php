@@ -91,7 +91,7 @@ class element extends \mod_customcert\element {
     public function save_unique_data($data) {
         $arrtostore = [
             'width' => !empty($data->width) ? (int)$data->width : 0,
-            'height' => !empty($data->height) ? (int)$data->height : 0
+            'height' => !empty($data->height) ? (int)$data->height : 0,
         ];
 
         return json_encode($arrtostore);
@@ -151,7 +151,7 @@ class element extends \mod_customcert\element {
                        AND cp.id = :pageid";
 
             // Now we can get the issue for this user.
-            $issue = $DB->get_record_sql($sql, array('userid' => $user->id, 'pageid' => $this->get_pageid()),
+            $issue = $DB->get_record_sql($sql, ['userid' => $user->id, 'pageid' => $this->get_pageid()],
                 '*', MUST_EXIST);
             $code = $issue->code;
 
@@ -160,7 +160,7 @@ class element extends \mod_customcert\element {
                 [
                     'contextid' => $issue->contextid,
                     'code' => $code,
-                    'qrcode' => 1
+                    'qrcode' => 1,
                 ]
             );
             $qrcodeurl = $qrcodeurl->out(false);

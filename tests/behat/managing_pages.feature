@@ -1,5 +1,5 @@
 @mod @mod_customcert
-Feature: Being able to manage pages in a certificate template
+Feature: Being able to manage pages in a custom certificate template
   In order to ensure managing pages in a certificate template works as expected
   As a teacher
   I need to manage pages in a certificate template

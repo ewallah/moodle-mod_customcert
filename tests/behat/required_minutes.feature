@@ -1,5 +1,5 @@
 @mod @mod_customcert
-Feature: Being able to set the required minutes in a course before viewing the certificate
+Feature: Being able to set the required minutes in a course before viewing the custom certificate
   In order to ensure the required minutes in a course setting works as expected
   As a teacher
   I need to ensure students can not view a certificate until the required minutes have passed

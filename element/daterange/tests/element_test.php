@@ -62,7 +62,7 @@ class element_test extends advanced_testcase {
             'posx' => 0,
             'posy' => 0,
             'width' => 100,
-            'refpoint' => 1
+            'refpoint' => 1,
         ];
     }
 
@@ -102,7 +102,7 @@ class element_test extends advanced_testcase {
      * Data provider for test_get_daterange_string_for_recurring_ranges.
      * @return array
      */
-    public function get_test_get_daterange_string_for_recurring_ranges_data_provider() {
+    public static function get_test_get_daterange_string_for_recurring_ranges_data_provider(): array {
         return [
             ['1.11.2016', 'WS 2016/2017'],
             ['1.11.2017', 'WS 2017/2018'],
@@ -123,7 +123,7 @@ class element_test extends advanced_testcase {
      * Test get correct strings for recurring ranges.
      *
      * @dataProvider get_test_get_daterange_string_for_recurring_ranges_data_provider
-     * @covers \element::get_daterange_string
+     * @covers \customcertelement_daterange\element
      *
      * @param string $date Date to test.
      * @param string $expected Expected result.
@@ -152,7 +152,7 @@ class element_test extends advanced_testcase {
     /**
      * Test that first found element matched.
      *
-     * @covers \element::get_daterange_string
+     * @covers \customcertelement_daterange\element
      */
     public function test_that_first_matched_range_applied_first() {
         $dateranges = [
@@ -178,7 +178,7 @@ class element_test extends advanced_testcase {
     /**
      * Test that placeholders correctly applied to matched range and fall back string.
      *
-     * @covers \element::get_daterange_string
+     * @covers \customcertelement_daterange\element
      */
     public function test_placeholders_and_fall_back_string() {
         $dateranges = [
@@ -205,7 +205,7 @@ class element_test extends advanced_testcase {
     /**
      * Test that nothing will be displayed if not matched and empty fall back string.
      *
-     * @covers \element::get_daterange_string
+     * @covers \customcertelement_daterange\element
      */
     public function test_nothing_will_be_displayed_if_empty_fallback_string() {
         $dateranges = [
@@ -227,7 +227,7 @@ class element_test extends advanced_testcase {
     /**
      * Test that display recurring_range_first_year and recurring_range_last_year placeholders.
      *
-     * @covers \element::get_daterange_string
+     * @covers \customcertelement_daterange\element
      */
     public function test_recurring_range_first_year_and_recurring_range_last_year_placeholders() {
         $datestring = '{{range_first_year}}-{{range_last_year}}-{{recurring_range_first_year}}-{{recurring_range_last_year}}';

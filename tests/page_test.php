@@ -50,7 +50,7 @@ class page_test extends \advanced_testcase {
      *   4. Delete the second page.
      * Previously the above scenario resulted in an error (#571).
      *
-     * @covers \template::delete_page
+     * @covers \mod_customcert\template::delete_page
      */
     public function test_delete_non_empty_page(): void {
         global $DB;
@@ -67,10 +67,10 @@ class page_test extends \advanced_testcase {
 
         $template->delete_page($page2id);
 
-        $records = $DB->count_records('customcert_elements', array('pageid' => $page2id));
+        $records = $DB->count_records('customcert_elements', ['pageid' => $page2id]);
         $this->assertEquals(0, $records);
 
-        $records = $DB->count_records('customcert_pages', array('id' => $page2id));
+        $records = $DB->count_records('customcert_pages', ['id' => $page2id]);
         $this->assertEquals(0, $records);
     }
 }

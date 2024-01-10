@@ -1,5 +1,5 @@
 @mod @mod_customcert
-Feature: Being able to set a site setting to determine whether or not to display the position X and Y fields
+Feature: Being able to set a site setting to determine whether or not to display the position X and Y customcert fields
   In order to ensure the show position X and Y fields setting works as expected
   As an admin
   I need to ensure teachers can see the position X and Y fields depending on the site setting

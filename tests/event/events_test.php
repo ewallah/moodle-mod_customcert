@@ -41,6 +41,7 @@ class events_test extends \advanced_testcase {
      * Tests the events are fired correctly when creating a template.
      *
      * @covers \mod_customcert\template::create
+     * @covers \mod_customcert\event\template_updated
      */
     public function test_creating_a_template(): void {
         // Trigger and capture the event.
@@ -58,6 +59,8 @@ class events_test extends \advanced_testcase {
      * Tests the events are fired correctly when creating a page.
      *
      * @covers \mod_customcert\template::add_page
+     * @covers \mod_customcert\event\page_created
+     * @covers \mod_customcert\event\template_updated
      */
     public function test_creating_a_page(): void {
         $template = \mod_customcert\template::create('Test name', \context_system::instance()->id);
@@ -85,6 +88,7 @@ class events_test extends \advanced_testcase {
      * Tests the events are fired correctly when moving an item.
      *
      * @covers \mod_customcert\template::move_item
+     * @covers \mod_customcert\event\template_updated
      */
     public function test_moving_item(): void {
         $template = \mod_customcert\template::create('Test name', \context_system::instance()->id);
@@ -105,6 +109,7 @@ class events_test extends \advanced_testcase {
      * Tests the events are fired correctly when deleting a template.
      *
      * @covers \mod_customcert\template::delete
+     * @covers \mod_customcert\event\template_deleted
      */
     public function test_deleting_a_template(): void {
         $template = \mod_customcert\template::create('Test name', \context_system::instance()->id);
@@ -123,6 +128,8 @@ class events_test extends \advanced_testcase {
      * Tests the events are fired correctly when deleting a page.
      *
      * @covers \mod_customcert\template::delete_page
+     * @covers \mod_customcert\event\page_deleted
+     * @covers \mod_customcert\event\template_updated
      */
     public function test_deleting_a_page(): void {
         $template = \mod_customcert\template::create('Test name', \context_system::instance()->id);
@@ -149,6 +156,8 @@ class events_test extends \advanced_testcase {
      * Tests the events are fired correctly when saving a page.
      *
      * @covers \mod_customcert\template::save_page
+     * @covers \mod_customcert\event\page_updated
+     * @covers \mod_customcert\event\template_updated
      */
     public function test_updating_a_page() {
         $template = \mod_customcert\template::create('Test name', \context_system::instance()->id);
@@ -186,7 +195,7 @@ class events_test extends \advanced_testcase {
     /**
      * Tests the events are fired correctly when saving form elements.
      *
-     * @covers \mod_customcert\element::save_form_elements
+     * @covers \mod_customcert\event\element_created
      */
     public function test_save_form_elements_insert() {
         $template = \mod_customcert\template::create('Test name', \context_system::instance()->id);
@@ -221,7 +230,7 @@ class events_test extends \advanced_testcase {
     /**
      * Tests the events are fired correctly when saving form elements.
      *
-     * @covers \mod_customcert\element::save_form_elements
+     * @covers \mod_customcert\event\element_updated
      */
     public function test_save_form_elements_update() {
         global $DB;
@@ -258,7 +267,10 @@ class events_test extends \advanced_testcase {
     /**
      * Tests the events are fired correctly when copying to a template.
      *
-     * @covers \mod_customcert\element::copy_to_template
+     * @covers \mod_customcert\plugininfo\customcertelement
+     * @covers \mod_customcert\event\page_created
+     * @covers \mod_customcert\event\element_created
+     * @covers \mod_customcert\event\template_created
      */
     public function test_copy_to_template() {
         global $DB;
@@ -303,7 +315,8 @@ class events_test extends \advanced_testcase {
     /**
      * Tests the events are fired correctly when deleting an element
      *
-     * @covers \mod_customcert\template::delete_element
+     * @covers \mod_customcert\event\element_deleted
+     * @covers \mod_customcert\event\template_updated
      */
     public function test_deleting_an_element(): void {
         global $DB;

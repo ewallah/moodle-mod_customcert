@@ -1,5 +1,5 @@
 @mod @mod_customcert
-Feature: Being able to manage site templates
+Feature: Being able to manage site templates of custom certificates
   In order to ensure managing site templates works as expected
   As an admin
   I need to manage and load site templates

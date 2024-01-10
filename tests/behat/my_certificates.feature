@@ -1,5 +1,5 @@
 @mod @mod_customcert
-Feature: Being able to view the certificates you have been issued
+Feature: Being able to view the custom certificates you have been issued
   In order to ensure that a user can view the certificates they have been issued
   As a student
   I need to view the certificates I have been issued
